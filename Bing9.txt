@@ -1,0 +1,68 @@
+Title
+
+Sorting Online Orders by Delivery Time using Merge Sort
+
+Theory
+Merge Sort is a Divide and Conquer sorting algorithm.
+Divide: split the list into two halves.
+Conquer: sort each half recursively.
+Combine: merge the two sorted halves into one sorted list.
+A list with one element is already sorted, so the recursion stops there.
+Merging compares the front elements of the two halves and takes the smaller delivery time each time.
+Merge sort is stable: orders with the same delivery time keep their original order.
+Time: O(n log n) in all cases.
+Space: O(n) for the temporary array used while merging.
+Algorithm
+
+MergeSort(A, low, high)
+
+If low ≥ high, return (one element is already sorted).
+mid = (low + high) // 2
+MergeSort(A, low, mid)
+MergeSort(A, mid + 1, high)
+Merge(A, low, mid, high)
+
+Merge(A, low, mid, high)
+
+Set i = low, j = mid + 1.
+While both halves have elements:
+If A[i].time ≤ A[j].time, copy A[i] to the temporary array and increase i.
+Otherwise, copy A[j] and increase j.
+Copy the remaining elements of either half.
+Copy the temporary array back into A.
+Example
+
+Delivery times: 45, 30, 15, 120, 60, 30, 25, 90
+
+Divide:
+
+[45 30 15 120 60 30 25 90]
+[45 30 15 120]      [60 30 25 90]
+[45 30] [15 120]    [60 30] [25 90]
+[45][30][15][120]   [60][30][25][90]
+
+Merge:
+
+[30 45] [15 120]    [30 60] [25 90]
+[15 30 45 120]      [25 30 60 90]
+[15 25 30 30 45 60 90 120]
+
+Delivery priority:
+
+Priority	Order	Item	Time
+1	ORD103	Medicines	15 min
+2	ORD107	Flowers	25 min
+3	ORD102	Pizza	30 min
+4	ORD106	Clothes	30 min
+5	ORD101	Groceries	45 min
+6	ORD105	Books	60 min
+7	ORD108	Shoes	90 min
+8	ORD104	Electronics	120 min
+
+ORD102 and ORD106 both take 30 minutes. ORD102 stays first because it was received first, which shows the sort is stable.
+
+Conclusion
+We sorted online orders by delivery time using Merge Sort, so the quickest deliveries come first.
+The list was divided into halves, sorted recursively, and merged in order of delivery time.
+Merge sort kept orders with equal delivery time in their original order (stable).
+It sorted the orders in O(n log n) time.

@@ -1,0 +1,70 @@
+Title
+
+Implementation of Binary Search Tree with Insert, Delete, Search and Traversal
+
+Theory
+A Binary Search Tree (BST) is a binary tree in which every node satisfies:
+all values in the left subtree are smaller than the node
+all values in the right subtree are larger than the node
+Each node stores data, a left pointer and a right pointer.
+Duplicate entries are rejected, so every key is unique.
+Deletion has three cases:
+Leaf: remove the node.
+One child: replace the node with its child.
+Two children: replace the node with its inorder successor (the smallest value in its right subtree).
+Traversals:
+Inorder (Left, Root, Right) gives sorted output.
+Preorder is Root, Left, Right.
+Postorder is Left, Right, Root.
+Time: insert, delete and search take O(log n) on average and O(n) for a skewed tree.
+Algorithm
+
+Insert (key)
+
+If the tree is empty, make key the root.
+Start at the root and compare key with the current node:
+If key equals the node, print “Duplicate” and stop.
+If key is smaller, go left; if larger, go right.
+When an empty position is reached, insert key there.
+
+Delete (key)
+
+Search for the node with key.
+If it is a leaf, remove it.
+If it has one child, link its parent to that child.
+If it has two children, copy the inorder successor’s value into the node, then delete the successor.
+
+Search (key)
+
+Start at the root.
+If key equals the node, it is found.
+If key is smaller, go left; if larger, go right.
+If an empty position (None) is reached, it is not found.
+
+Traversal
+
+Inorder(node): Inorder(left), print node, Inorder(right)
+Preorder(node): print node, Preorder(left), Preorder(right)
+Postorder(node): Postorder(left), Postorder(right), print node
+Example
+
+Insert: 50, 30, 70, 20, 40, 60, 80
+
+        50
+      /    \
+    30      70
+   /  \    /  \
+  20  40  60  80
+Operation	Result
+Insert 40 again	Duplicate entry, not inserted
+Inorder	20 30 40 50 60 70 80
+Preorder	50 30 20 40 70 60 80
+Postorder	20 40 30 60 80 70 50
+Search 60	Found at level 3
+Search 55	Not found
+Delete 30 (two children)	Replaced by 40 → Inorder: 20 40 50 60 70 80
+Conclusion
+We implemented a Binary Search Tree in Python with insert, delete, search and traversal operations.
+Duplicate entries were rejected, and deletion handled all three cases (leaf, one child, two children).
+Inorder traversal gave the values in sorted order, which confirms the BST property.
+Insert, delete and search take O(log n) on average.

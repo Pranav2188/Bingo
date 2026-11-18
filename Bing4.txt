@@ -1,0 +1,49 @@
+Title
+
+Implementation of Circular Queue using Array
+
+Theory
+A queue is a linear data structure that follows FIFO (First In, First Out).
+Insertion happens at the rear and deletion happens at the front.
+In a linear queue, slots freed by deletion cannot be reused, so memory is wasted.
+A circular queue connects the last position back to the first, so freed slots are reused.
+Indices wrap around using the modulus operator: next = (index + 1) % SIZE.
+Empty condition: front == -1
+Full condition: (rear + 1) % SIZE == front
+Algorithm
+
+Enqueue (x)
+
+If (rear + 1) % SIZE == front, print “Queue Overflow” and stop.
+If front == -1, set front = 0.
+Set rear = (rear + 1) % SIZE.
+Set q[rear] = x.
+
+Dequeue
+
+If front == -1, print “Queue Underflow” and stop.
+Delete q[front].
+If front == rear, set front = rear = -1 (the queue is now empty).
+Otherwise, set front = (front + 1) % SIZE.
+
+Display
+
+If front == -1, print “Queue is Empty” and stop.
+Start at i = front and print q[i].
+Move i = (i + 1) % SIZE and print q[i]. Repeat until i == rear.
+Example
+
+SIZE = 5
+
+Operation	Queue	Front	Rear
+Insert 10, 20, 30, 40, 50	10 20 30 40 50	0	4
+Insert 60	Overflow	0	4
+Delete, Delete	_ _ 30 40 50	2	4
+Insert 60	60 _ 30 40 50	2	0 (wrapped)
+Insert 70	60 70 30 40 50	2	1
+Display	30 40 50 60 70	2	1
+Conclusion
+We implemented a circular queue using an array with enqueue, dequeue and display operations.
+Using % SIZE, the rear wraps around to reuse empty slots, which removes the memory wastage of a linear queue.
+Full and empty conditions were handled correctly.
+Both insertion and deletion take O(1) time.

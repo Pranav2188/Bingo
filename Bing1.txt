@@ -1,0 +1,58 @@
+Title
+
+Student Database using Dynamic Memory Allocation, with Linear and Binary Search
+
+Theory
+Dynamic memory allocation reserves memory while the program runs instead of fixing the size beforehand.
+malloc() allocates a block of memory, realloc() resizes it, and free() releases it.
+Each student record is a structure with ID, Name and CGPA.
+When the list is full, realloc() doubles its size (2 → 4 → 8), so memory is never wasted on empty slots.
+Linear search checks records one by one and works on unsorted data. Time: O(n).
+Binary search repeatedly halves the search range and needs data sorted by ID. Time: O(log n).
+Algorithm
+
+Add Student
+
+Read ID, Name and CGPA.
+If the ID already exists, show an error and stop.
+If count equals capacity, call realloc() to double the capacity.
+Store the record at position count and increase count by 1.
+
+Linear Search (key)
+
+For i = 0 to count − 1:
+If list[i].id == key, return i.
+Return “Not found”.
+
+Binary Search (key)
+
+Sort the list by ID.
+Set low = 0 and high = count − 1.
+While low ≤ high:
+mid = (low + high) / 2
+If list[mid].id == key, return mid.
+If list[mid].id < key, set low = mid + 1. Otherwise, set high = mid − 1.
+Return “Not found”.
+
+Exit
+
+Call free() to release the memory.
+Example
+
+Input: Students added with IDs 105, 102, 110, 101, 107.
+
+Memory expansion: capacity grows 0 → 2 → 4 → 8.
+
+Search for ID 101:
+
+Method	Steps	Comparisons
+Linear search	Checks 105, 102, 110, 101 → found	4
+Binary search	Sorted list: 101, 102, 105, 107, 110. Mid = 105, then mid = 101 → found	2
+
+Output: 101 Rahul Deshmukh 6.80
+
+Conclusion
+We stored student records in dynamically allocated memory and expanded it with realloc() as new students were added.
+Linear search works on unsorted data but takes O(n) time.
+Binary search is faster, O(log n), but needs data sorted by ID.
+Memory was released with free() at the end.

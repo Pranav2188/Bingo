@@ -1,0 +1,47 @@
+Title
+
+Representation of a College Campus Graph and Minimum Spanning Tree using Prim’s Algorithm
+
+Theory
+A graph G = (V, E) is a set of vertices (nodes) connected by edges (links).
+Here, vertices are departments and edge weights are distances in metres.
+Adjacency matrix: a V × V table where A[i][j] is the distance between departments i and j, and 0 if there is no direct path.
+Adjacency list: each department stores a list of its neighbours and their distances.
+A spanning tree connects all V vertices using V − 1 edges with no cycle.
+A Minimum Spanning Tree (MST) is the spanning tree with the smallest total weight.
+Prim’s algorithm is a greedy method. It starts from one vertex and adds the cheapest edge that connects the tree to a new vertex at each step.
+Time: O(V²) using the adjacency matrix.
+Algorithm
+
+Prim (start)
+
+Set key[v] = ∞, parent[v] = −1 and visited[v] = false for all vertices.
+Set key[start] = 0.
+Repeat V times:
+Pick the unvisited vertex u with the smallest key[u].
+If key[u] == ∞, the graph is disconnected, so stop.
+Mark u as visited.
+If parent[u] ≠ −1, add edge (parent[u], u) to the MST and add key[u] to the total.
+For each unvisited neighbour v of u: if weight(u, v) < key[v], set key[v] = weight(u, v) and parent[v] = u.
+Print the MST edges and the total distance.
+Example
+
+Campus: 7 departments, 11 paths. Start = ADM.
+
+Step	Department added	Edge selected	Distance
+1	ADM	Start	0
+2	LIB	ADM – LIB	120
+3	COMP	LIB – COMP	150
+4	IT	COMP – IT	80
+5	ENTC	IT – ENTC	110
+6	MECH	ENTC – MECH	220
+7	CIVIL	MECH – CIVIL	90
+		Total	770 m
+
+The MST uses 6 edges (V − 1) to connect all 7 departments.
+
+Conclusion
+We represented the college campus as a weighted graph using an adjacency matrix and an adjacency list.
+Using Prim’s algorithm, we found the Minimum Spanning Tree, which connects all departments with a minimum total distance of 770 m.
+Prim’s algorithm always grows a single connected tree, so it never forms a cycle.
+It runs in O(V²) time using the adjacency matrix.
